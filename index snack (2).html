@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DR. SNACK - قائمة الطعام</title>
+<!-- بدون انترنت - خطوط النظام -->
+<style>
+  :root {
+    --gold: #F5A623;
+    --gold-light: #FFD166;
+    --dark: #0F0F0F;
+    --dark2: #1A1A1A;
+    --dark3: #242424;
+    --dark4: #2E2E2E;
+    --white: #FFFFFF;
+    --off-white: #F5F0E8;
+    --red: #E63946;
+    --green: #2DC653;
+    --text-muted: #888;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: #0F0F0F !important;
+background-color: #0F0F0F !important;
+color: var(–white);
+font-family: ‘Segoe UI’, ‘Arial’, ‘Tahoma’, sans-serif;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* ─── BACKGROUND TEXTURE ─── */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image:
+radial-gradient(circle at 20% 50%, rgba(245,166,35,0.04) 0%, transparent 50%),
+radial-gradient(circle at 80% 20%, rgba(230,57,70,0.04) 0%, transparent 50%);
+pointer-events: none;
+z-index: 0;
+}
+
+.container {
+max-width: 900px;
+margin: 0 auto;
+padding: 0 20px 60px;
+position: relative;
+z-index: 1;
+}
+
+/* ─── HERO HEADER ─── */
+.hero {
+text-align: center;
+padding: 50px 20px 30px;
+position: relative;
+}
+
+.logo-wrap {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 160px;
+height: 160px;
+border-radius: 50%;
+margin-bottom: 16px;
+box-shadow: 0 0 40px rgba(245,166,35,0.5), 0 0 80px rgba(245,166,35,0.2);
+animation: pulse-glow 3s ease-in-out infinite;
+overflow: hidden;
+background: #1A1A1A;
+}
+.logo-wrap img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 50%;
+}
+
+@keyframes pulse-glow {
+0%, 100% { box-shadow: 0 0 40px rgba(245,166,35,0.5), 0 0 80px rgba(245,166,35,0.2); }
+50%       { box-shadow: 0 0 60px rgba(245,166,35,0.8), 0 0 120px rgba(245,166,35,0.3); }
+}
+
+.logo-wrap span { font-size: 48px; }
+
+.brand-name {
+font-family: ‘Impact’, ‘Arial Black’, sans-serif;
+font-size: clamp(52px, 10vw, 80px);
+letter-spacing: 6px;
+background: linear-gradient(135deg, var(–gold-light) 0%, var(–gold) 50%, #C47D0E 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+line-height: 1;
+}
+
+.brand-sub {
+font-size: 13px;
+letter-spacing: 5px;
+color: var(–text-muted);
+text-transform: uppercase;
+margin-top: 6px;
+}
+
+.divider {
+display: flex;
+align-items: center;
+gap: 12px;
+margin: 28px 0;
+}
+.divider::before, .divider::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: linear-gradient(to right, transparent, var(–gold), transparent);
+}
+.divider-icon { color: var(–gold); font-size: 18px; }
+
+/* ─── SPECIAL OFFER BANNER ─── */
+.offer-banner {
+background: linear-gradient(135deg, var(–red) 0%, #B02030 100%);
+border-radius: 16px;
+padding: 20px 28px;
+margin-bottom: 32px;
+display: flex;
+align-items: center;
+gap: 16px;
+position: relative;
+overflow: hidden;
+animation: slide-in 0.6s ease;
+}
+
+@keyframes slide-in {
+from { opacity: 0; transform: translateY(-20px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+.offer-banner::before {
+content: ‘’;
+position: absolute;
+top: -30px; left: -30px;
+width: 120px; height: 120px;
+background: rgba(255,255,255,0.06);
+border-radius: 50%;
+}
+.offer-banner::after {
+content: ‘’;
+position: absolute;
+bottom: -20px; right: -20px;
+width: 80px; height: 80px;
+background: rgba(255,255,255,0.06);
+border-radius: 50%;
+}
+
+.offer-icon {
+font-size: 36px;
+flex-shrink: 0;
+animation: bounce 1s ease-in-out infinite;
+}
+@keyframes bounce {
+0%, 100% { transform: translateY(0); }
+50%       { transform: translateY(-6px); }
+}
+
+.offer-text h3 {
+font-size: 18px;
+font-weight: 900;
+margin-bottom: 4px;
+}
+.offer-text p { font-size: 14px; opacity: 0.9; line-height: 1.6; }
+.offer-badge {
+background: var(–gold);
+color: var(–dark);
+font-weight: 900;
+font-size: 11px;
+padding: 4px 10px;
+border-radius: 20px;
+white-space: nowrap;
+flex-shrink: 0;
+margin-right: auto;
+}
+
+/* ─── MEAL DEAL STRIP ─── */
+.meal-deal {
+background: linear-gradient(90deg, var(–dark3), var(–dark4), var(–dark3));
+border: 1px solid var(–gold);
+border-radius: 12px;
+padding: 16px 24px;
+margin-bottom: 36px;
+text-align: center;
+font-weight: 700;
+font-size: 16px;
+color: var(–off-white);
+}
+.meal-deal strong {
+font-family: ‘Bebas Neue’, cursive;
+font-size: 28px;
+color: var(–gold);
+letter-spacing: 2px;
+}
+
+/* ─── SECTION HEADER ─── */
+.section-header {
+display: flex;
+align-items: center;
+gap: 14px;
+margin-bottom: 16px;
+padding: 14px 20px;
+background: linear-gradient(135deg, var(–dark3) 0%, var(–dark2) 100%);
+border-radius: 12px;
+border-right: 4px solid var(–gold);
+}
+
+.section-header .sec-icon { font-size: 24px; }
+.section-header h2 {
+font-size: 20px;
+font-weight: 900;
+color: var(–gold-light);
+}
+.section-header .item-count {
+margin-right: auto;
+background: var(–dark4);
+color: var(–text-muted);
+font-size: 12px;
+padding: 3px 10px;
+border-radius: 20px;
+}
+
+/* ─── MENU ITEMS ─── */
+.menu-grid {
+display: flex;
+flex-direction: column;
+gap: 6px;
+margin-bottom: 36px;
+}
+
+.menu-item {
+display: flex;
+align-items: center;
+padding: 14px 18px;
+background: var(–dark2);
+border-radius: 10px;
+transition: all 0.2s ease;
+border: 1px solid transparent;
+animation: fade-up 0.4s ease both;
+}
+
+.menu-item:hover {
+background: var(–dark3);
+border-color: rgba(245,166,35,0.3);
+transform: translateX(-4px);
+}
+
+@keyframes fade-up {
+from { opacity: 0; transform: translateY(10px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+.menu-item:nth-child(1)  { animation-delay: 0.05s; }
+.menu-item:nth-child(2)  { animation-delay: 0.10s; }
+.menu-item:nth-child(3)  { animation-delay: 0.15s; }
+.menu-item:nth-child(4)  { animation-delay: 0.20s; }
+.menu-item:nth-child(5)  { animation-delay: 0.25s; }
+.menu-item:nth-child(6)  { animation-delay: 0.30s; }
+.menu-item:nth-child(7)  { animation-delay: 0.35s; }
+.menu-item:nth-child(8)  { animation-delay: 0.40s; }
+.menu-item:nth-child(9)  { animation-delay: 0.45s; }
+.menu-item:nth-child(10) { animation-delay: 0.50s; }
+
+.item-name {
+font-size: 15px;
+font-weight: 600;
+color: var(–off-white);
+flex: 1;
+}
+
+.item-tag {
+font-size: 10px;
+padding: 2px 8px;
+border-radius: 20px;
+margin-left: 10px;
+font-weight: 700;
+}
+.tag-popular { background: rgba(245,166,35,0.15); color: var(–gold); }
+.tag-new     { background: rgba(44,198,83,0.15);  color: var(–green); }
+.tag-hot     { background: rgba(230,57,70,0.15);   color: var(–red); }
+
+.item-dots {
+flex: 1;
+height: 1px;
+background: repeating-linear-gradient(
+to right, var(–dark4) 0, var(–dark4) 4px, transparent 4px, transparent 8px
+);
+margin: 0 12px;
+max-width: 60px;
+opacity: 0.5;
+}
+
+.item-price {
+font-family: ‘Impact’, ‘Arial Black’, sans-serif;
+font-size: 22px;
+color: var(–gold);
+letter-spacing: 1px;
+white-space: nowrap;
+}
+.item-price .currency {
+font-size: 13px;
+font-family: ‘Cairo’, sans-serif;
+font-weight: 700;
+color: var(–text-muted);
+margin-right: 3px;
+}
+
+/* ─── TWO-COLUMN GRID FOR HAJ/FRENCH ─── */
+.two-col-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 6px;
+margin-bottom: 36px;
+}
+
+@media (max-width: 520px) {
+.two-col-grid { grid-template-columns: 1fr; }
+}
+
+.two-col-grid .menu-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+.two-col-grid .item-name { font-size: 14px; }
+.two-col-grid .price-row {
+display: flex;
+align-items: center;
+gap: 8px;
+width: 100%;
+}
+.two-col-grid .price-label {
+font-size: 10px;
+color: var(–text-muted);
+background: var(–dark4);
+padding: 2px 8px;
+border-radius: 4px;
+}
+
+/* ─── DRINKS SECTION ─── */
+.drinks-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+margin-bottom: 36px;
+}
+
+.drink-card {
+background: var(–dark2);
+border: 1px solid var(–dark4);
+border-radius: 12px;
+padding: 18px;
+display: flex;
+align-items: center;
+gap: 12px;
+transition: all 0.2s ease;
+}
+.drink-card:hover {
+border-color: rgba(245,166,35,0.4);
+background: var(–dark3);
+}
+.drink-icon { font-size: 28px; }
+.drink-name { font-size: 14px; font-weight: 700; }
+.drink-price {
+font-family: ‘Impact’, ‘Arial Black’, sans-serif;
+font-size: 20px;
+color: var(–gold);
+margin-right: auto;
+}
+
+/* ─── FOOTER ─── */
+.footer {
+background: var(–dark2);
+border: 1px solid var(–dark4);
+border-radius: 16px;
+padding: 24px;
+text-align: center;
+}
+
+.footer-location {
+font-size: 14px;
+color: var(–text-muted);
+margin-bottom: 16px;
+line-height: 1.8;
+}
+.footer-location strong { color: var(–off-white); }
+
+.phone-grid {
+display: flex;
+justify-content: center;
+gap: 16px;
+flex-wrap: wrap;
+}
+.phone-chip {
+display: flex;
+align-items: center;
+gap: 8px;
+background: var(–dark3);
+border: 1px solid var(–dark4);
+border-radius: 30px;
+padding: 10px 20px;
+font-weight: 700;
+font-size: 15px;
+letter-spacing: 1px;
+transition: all 0.2s ease;
+text-decoration: none;
+color: var(–white);
+}
+.phone-chip:hover {
+background: var(–gold);
+color: var(–dark);
+border-color: var(–gold);
+}
+.phone-icon { font-size: 16px; }
+
+/* ─── SCROLL INDICATOR ─── */
+.scroll-fade {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-fade.visible {
+opacity: 1;
+transform: translateY(0);
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+
+  <div class="hero scroll-fade">
+    <div class="logo-wrap"><img src="Logo10.jpg" alt="DR. SNACK Logo"></div>
+    <div class="brand-name">DR. SNACK</div>
+    <div class="brand-sub">قائمة الطعام الرسمية</div>
+  </div>
+
+  <div class="divider scroll-fade"><span class="divider-icon">✦</span></div>
+
+  <!-- SPECIAL OFFER -->
+
+  <div class="offer-banner scroll-fade">
+    <div class="offer-icon">🎁</div>
+    <div class="offer-text">
+      <h3>عرض خاص محدود!</h3>
+      <p>احصل على طلب جانبي مجاني مع أي سندويش صاج أو فرنسي</p>
+    </div>
+    <div class="offer-badge">⏳ 3 أيام فقط</div>
+  </div>
+
+  <!-- MEAL DEAL -->
+
+  <div class="meal-deal scroll-fade">
+    اعمل السندويش وجبة كاملة بـ <strong>دينار واحد فقط</strong> 🔥
+  </div>
+
+  <!-- ─── SANDWICHES ─── -->
+
+  <div class="section-header scroll-fade">
+    <span class="sec-icon">🥙</span>
+    <h2>السندويشات</h2>
+    <span class="item-count">20 صنف</span>
+  </div>
+
+  <div class="menu-grid">
+    <div class="menu-item"><span class="item-name">ايطالي</span><span class="item-tag tag-popular">⭐ الأكثر طلباً</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.95</span></div>
+    <div class="menu-item"><span class="item-name">فرانسيسكو</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.95</span></div>
+    <div class="menu-item"><span class="item-name">باربكيو</span><span class="item-tag tag-hot">🔥 حار</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.95</span></div>
+    <div class="menu-item"><span class="item-name">فيلادلفيا ستيك</span><span class="item-tag tag-popular">⭐ الأكثر طلباً</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>2.25</span></div>
+    <div class="menu-item"><span class="item-name">بريميوم سنيك</span><span class="item-tag tag-new">✨ مميز</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>2.25</span></div>
+    <div class="menu-item"><span class="item-name">زنجر 120 غرام</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.80</span></div>
+    <div class="menu-item"><span class="item-name">بطاطا مع جنبة</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.25</span></div>
+    <div class="menu-item"><span class="item-name">كوردون بلو</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.80</span></div>
+    <div class="menu-item"><span class="item-name">سكلوب</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.50</span></div>
+    <div class="menu-item"><span class="item-name">برغر 100 غرام</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.50</span></div>
+    <div class="menu-item"><span class="item-name">برغر 150 غرام</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>2.00</span></div>
+    <div class="menu-item"><span class="item-name">فاهيتا</span><span class="item-tag tag-popular">⭐ الأكثر طلباً</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.90</span></div>
+  </div>
+
+  <div class="divider scroll-fade"><span class="divider-icon">✦</span></div>
+
+  <!-- ─── SIDES & SALADS ─── -->
+
+  <div class="section-header scroll-fade">
+    <span class="sec-icon">🥗</span>
+    <h2>المقبلات والسلطات</h2>
+    <span class="item-count">8 أصناف</span>
+  </div>
+
+  <div class="menu-grid">
+    <div class="menu-item"><span class="item-name">بطاطا عادي</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.00</span></div>
+    <div class="menu-item"><span class="item-name">بطاطا ودجز</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.50</span></div>
+    <div class="menu-item"><span class="item-name">بطاطا كيرلي</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.50</span></div>
+    <div class="menu-item"><span class="item-name">اصابع موزاريلا</span><span class="item-tag tag-popular">⭐ الأكثر طلباً</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.50</span></div>
+    <div class="menu-item"><span class="item-name">حلقات بصل</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.50</span></div>
+    <div class="menu-item"><span class="item-name">سلطة سيزر</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.50</span></div>
+    <div class="menu-item"><span class="item-name">سلطة يونانية</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.50</span></div>
+    <div class="menu-item"><span class="item-name">سلطة شيف</span><span class="item-tag tag-new">✨ مميز</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.75</span></div>
+  </div>
+
+  <div class="divider scroll-fade"><span class="divider-icon">✦</span></div>
+
+  <!-- ─── SAJ / FRENCH ─── -->
+
+  <div class="section-header scroll-fade">
+    <span class="sec-icon">🫓</span>
+    <h2>سندويش صاج / فرنسي / حمام</h2>
+    <span class="item-count">7 أصناف</span>
+  </div>
+
+  <div class="two-col-grid">
+    <div class="menu-item">
+      <span class="item-name">تيركي</span>
+      <div class="price-row">
+        <span class="price-label">حمام</span><span class="item-price" style="font-size:17px"><span class="currency">د</span>1.00</span>
+        <span class="price-label">صاج/فرنسي</span><span class="item-price" style="font-size:17px"><span class="currency">د</span>1.50</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <span class="item-name">مكس اجبان</span>
+      <div class="price-row">
+        <span class="price-label">حمام</span><span class="item-price" style="font-size:17px"><span class="currency">د</span>1.00</span>
+        <span class="price-label">صاج/فرنسي</span><span class="item-price" style="font-size:17px"><span class="currency">د</span>1.50</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <span class="item-name">حلوم</span>
+      <div class="price-row">
+        <span class="price-label">حمام</span><span class="item-price" style="font-size:17px"><span class="currency">د</span>1.00</span>
+        <span class="price-label">صاج/فرنسي</span><span class="item-price" style="font-size:17px"><span class="currency">د</span>1.75</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <span class="item-name">كبده</span>
+      <div class="price-row">
+        <span class="price-label">حمام</span><span class="item-price" style="font-size:17px"><span class="currency">د</span>1.00</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <span class="item-name">مفركة</span>
+      <div class="price-row">
+        <span class="price-label">حمام</span><span class="item-price" style="font-size:17px"><span class="currency">د</span>1.00</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <span class="item-name">فعفوط</span>
+      <div class="price-row">
+        <span class="price-label">حمام</span><span class="item-price" style="font-size:17px"><span class="currency">د</span>1.00</span>
+      </div>
+    </div>
+    <div class="menu-item" style="grid-column: 1 / -1;">
+      <span class="item-name">لبنة وسنيورة</span>
+      <div class="price-row">
+        <span class="price-label">حمام</span><span class="item-price" style="font-size:17px"><span class="currency">د</span>0.50</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider scroll-fade"><span class="divider-icon">✦</span></div>
+
+  <!-- ─── DRINKS ─── -->
+
+  <div class="section-header scroll-fade">
+    <span class="sec-icon">🥤</span>
+    <h2>المشروبات</h2>
+    <span class="item-count">2 أصناف</span>
+  </div>
+
+  <div class="drinks-row scroll-fade">
+    <div class="drink-card">
+      <span class="drink-icon">🥤</span>
+      <div>
+        <div class="drink-name">مشروبات غازية</div>
+      </div>
+      <div class="drink-price"><span style="font-size:13px;font-family:'Cairo';color:var(--text-muted)">د</span>0.35</div>
+    </div>
+    <div class="drink-card">
+      <span class="drink-icon">💧</span>
+      <div>
+        <div class="drink-name">مياه معدنية</div>
+      </div>
+      <div class="drink-price"><span style="font-size:13px;font-family:'Cairo';color:var(--text-muted)">د</span>0.35</div>
+    </div>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+
+  <div class="footer scroll-fade">
+    <div class="footer-location">
+      📍 <strong>الشميساني</strong> — مقابل المستشفى التخصصي<br>
+      مجمع أبو عيد بلازا
+    </div>
+    <div class="phone-grid">
+      <a class="phone-chip" href="tel:0797220976"><span class="phone-icon">📞</span> 079 722 0 976</a>
+      <a class="phone-chip" href="tel:0797810633"><span class="phone-icon">📞</span> 079 781 0 633</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
