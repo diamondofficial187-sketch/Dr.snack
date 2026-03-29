@@ -5,58 +5,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DR. SNACK - قائمة الطعام</title>
-<!-- بدون انترنت - خطوط النظام -->
 <style>
-  :root {
-    --gold: #F5A623;
-    --gold-light: #FFD166;
-    --dark: #0F0F0F;
-    --dark2: #1A1A1A;
-    --dark3: #242424;
-    --dark4: #2E2E2E;
-    --white: #FFFFFF;
-    --off-white: #F5F0E8;
-    --red: #E63946;
-    --green: #2DC653;
-    --text-muted: #888;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-background: #0F0F0F !important;
+html, body {
 background-color: #0F0F0F !important;
-color: var(–white);
-font-family: ‘Segoe UI’, ‘Arial’, ‘Tahoma’, sans-serif;
+background: #0F0F0F !important;
+color: #FFFFFF !important;
+font-family: ‘Segoe UI’, Arial, Tahoma, sans-serif !important;
 min-height: 100vh;
 overflow-x: hidden;
-}
-
-/* ─── BACKGROUND TEXTURE ─── */
-body::before {
-content: ‘’;
-position: fixed;
-inset: 0;
-background-image:
-radial-gradient(circle at 20% 50%, rgba(245,166,35,0.04) 0%, transparent 50%),
-radial-gradient(circle at 80% 20%, rgba(230,57,70,0.04) 0%, transparent 50%);
-pointer-events: none;
-z-index: 0;
 }
 
 .container {
 max-width: 900px;
 margin: 0 auto;
 padding: 0 20px 60px;
-position: relative;
-z-index: 1;
+background-color: #0F0F0F !important;
 }
 
-/* ─── HERO HEADER ─── */
+/* ─── HERO ─── */
 .hero {
 text-align: center;
 padding: 50px 20px 30px;
-position: relative;
+background-color: #0F0F0F !important;
 }
 
 .logo-wrap {
@@ -67,11 +39,12 @@ width: 160px;
 height: 160px;
 border-radius: 50%;
 margin-bottom: 16px;
-box-shadow: 0 0 40px rgba(245,166,35,0.5), 0 0 80px rgba(245,166,35,0.2);
-animation: pulse-glow 3s ease-in-out infinite;
+box-shadow: 0 0 40px rgba(245,166,35,0.6), 0 0 80px rgba(245,166,35,0.3);
 overflow: hidden;
-background: #1A1A1A;
+background-color: #1A1A1A !important;
+animation: pulse-glow 3s ease-in-out infinite;
 }
+
 .logo-wrap img {
 width: 100%;
 height: 100%;
@@ -81,30 +54,27 @@ border-radius: 50%;
 
 @keyframes pulse-glow {
 0%, 100% { box-shadow: 0 0 40px rgba(245,166,35,0.5), 0 0 80px rgba(245,166,35,0.2); }
-50%       { box-shadow: 0 0 60px rgba(245,166,35,0.8), 0 0 120px rgba(245,166,35,0.3); }
+50%       { box-shadow: 0 0 60px rgba(245,166,35,0.9), 0 0 120px rgba(245,166,35,0.4); }
 }
 
-.logo-wrap span { font-size: 48px; }
-
 .brand-name {
-font-family: ‘Impact’, ‘Arial Black’, sans-serif;
+font-family: Impact, ‘Arial Black’, Arial, sans-serif !important;
 font-size: clamp(52px, 10vw, 80px);
 letter-spacing: 6px;
-background: linear-gradient(135deg, var(–gold-light) 0%, var(–gold) 50%, #C47D0E 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
+color: #F5A623 !important;
 line-height: 1;
+display: block;
 }
 
 .brand-sub {
 font-size: 13px;
 letter-spacing: 5px;
-color: var(–text-muted);
-text-transform: uppercase;
+color: #888888 !important;
 margin-top: 6px;
+display: block;
 }
 
+/* ─── DIVIDER ─── */
 .divider {
 display: flex;
 align-items: center;
@@ -115,50 +85,27 @@ margin: 28px 0;
 content: ‘’;
 flex: 1;
 height: 1px;
-background: linear-gradient(to right, transparent, var(–gold), transparent);
+background: linear-gradient(to right, transparent, #F5A623, transparent);
 }
-.divider-icon { color: var(–gold); font-size: 18px; }
+.divider-icon { color: #F5A623 !important; font-size: 18px; }
 
-/* ─── SPECIAL OFFER BANNER ─── */
+/* ─── OFFER BANNER ─── */
 .offer-banner {
-background: linear-gradient(135deg, var(–red) 0%, #B02030 100%);
+background-color: #C0212E !important;
+background: linear-gradient(135deg, #E63946, #C0212E) !important;
 border-radius: 16px;
 padding: 20px 28px;
 margin-bottom: 32px;
 display: flex;
 align-items: center;
 gap: 16px;
-position: relative;
 overflow: hidden;
-animation: slide-in 0.6s ease;
-}
-
-@keyframes slide-in {
-from { opacity: 0; transform: translateY(-20px); }
-to   { opacity: 1; transform: translateY(0); }
-}
-
-.offer-banner::before {
-content: ‘’;
-position: absolute;
-top: -30px; left: -30px;
-width: 120px; height: 120px;
-background: rgba(255,255,255,0.06);
-border-radius: 50%;
-}
-.offer-banner::after {
-content: ‘’;
-position: absolute;
-bottom: -20px; right: -20px;
-width: 80px; height: 80px;
-background: rgba(255,255,255,0.06);
-border-radius: 50%;
 }
 
 .offer-icon {
 font-size: 36px;
 flex-shrink: 0;
-animation: bounce 1s ease-in-out infinite;
+animation: bounce 1.5s ease-in-out infinite;
 }
 @keyframes bounce {
 0%, 100% { transform: translateY(0); }
@@ -168,12 +115,18 @@ animation: bounce 1s ease-in-out infinite;
 .offer-text h3 {
 font-size: 18px;
 font-weight: 900;
+color: #FFFFFF !important;
 margin-bottom: 4px;
 }
-.offer-text p { font-size: 14px; opacity: 0.9; line-height: 1.6; }
+.offer-text p {
+font-size: 14px;
+color: #FFFFFF !important;
+opacity: 0.92;
+line-height: 1.6;
+}
 .offer-badge {
-background: var(–gold);
-color: var(–dark);
+background-color: #F5A623 !important;
+color: #0F0F0F !important;
 font-weight: 900;
 font-size: 11px;
 padding: 4px 10px;
@@ -183,22 +136,22 @@ flex-shrink: 0;
 margin-right: auto;
 }
 
-/* ─── MEAL DEAL STRIP ─── */
+/* ─── MEAL DEAL ─── */
 .meal-deal {
-background: linear-gradient(90deg, var(–dark3), var(–dark4), var(–dark3));
-border: 1px solid var(–gold);
+background-color: #242424 !important;
+border: 1px solid #F5A623;
 border-radius: 12px;
 padding: 16px 24px;
 margin-bottom: 36px;
 text-align: center;
 font-weight: 700;
 font-size: 16px;
-color: var(–off-white);
+color: #F5F0E8 !important;
 }
 .meal-deal strong {
-font-family: ‘Bebas Neue’, cursive;
+font-family: Impact, ‘Arial Black’, sans-serif !important;
 font-size: 28px;
-color: var(–gold);
+color: #F5A623 !important;
 letter-spacing: 2px;
 }
 
@@ -209,21 +162,20 @@ align-items: center;
 gap: 14px;
 margin-bottom: 16px;
 padding: 14px 20px;
-background: linear-gradient(135deg, var(–dark3) 0%, var(–dark2) 100%);
+background-color: #1A1A1A !important;
 border-radius: 12px;
-border-right: 4px solid var(–gold);
+border-right: 4px solid #F5A623;
 }
-
 .section-header .sec-icon { font-size: 24px; }
 .section-header h2 {
 font-size: 20px;
 font-weight: 900;
-color: var(–gold-light);
+color: #FFD166 !important;
 }
 .section-header .item-count {
 margin-right: auto;
-background: var(–dark4);
-color: var(–text-muted);
+background-color: #2E2E2E !important;
+color: #888888 !important;
 font-size: 12px;
 padding: 3px 10px;
 border-radius: 20px;
@@ -241,39 +193,21 @@ margin-bottom: 36px;
 display: flex;
 align-items: center;
 padding: 14px 18px;
-background: var(–dark2);
+background-color: #1A1A1A !important;
 border-radius: 10px;
+border: 1px solid #2E2E2E;
 transition: all 0.2s ease;
-border: 1px solid transparent;
-animation: fade-up 0.4s ease both;
 }
-
 .menu-item:hover {
-background: var(–dark3);
-border-color: rgba(245,166,35,0.3);
+background-color: #242424 !important;
+border-color: rgba(245,166,35,0.4);
 transform: translateX(-4px);
 }
-
-@keyframes fade-up {
-from { opacity: 0; transform: translateY(10px); }
-to   { opacity: 1; transform: translateY(0); }
-}
-
-.menu-item:nth-child(1)  { animation-delay: 0.05s; }
-.menu-item:nth-child(2)  { animation-delay: 0.10s; }
-.menu-item:nth-child(3)  { animation-delay: 0.15s; }
-.menu-item:nth-child(4)  { animation-delay: 0.20s; }
-.menu-item:nth-child(5)  { animation-delay: 0.25s; }
-.menu-item:nth-child(6)  { animation-delay: 0.30s; }
-.menu-item:nth-child(7)  { animation-delay: 0.35s; }
-.menu-item:nth-child(8)  { animation-delay: 0.40s; }
-.menu-item:nth-child(9)  { animation-delay: 0.45s; }
-.menu-item:nth-child(10) { animation-delay: 0.50s; }
 
 .item-name {
 font-size: 15px;
 font-weight: 600;
-color: var(–off-white);
+color: #F5F0E8 !important;
 flex: 1;
 }
 
@@ -284,15 +218,15 @@ border-radius: 20px;
 margin-left: 10px;
 font-weight: 700;
 }
-.tag-popular { background: rgba(245,166,35,0.15); color: var(–gold); }
-.tag-new     { background: rgba(44,198,83,0.15);  color: var(–green); }
-.tag-hot     { background: rgba(230,57,70,0.15);   color: var(–red); }
+.tag-popular { background-color: rgba(245,166,35,0.15) !important; color: #F5A623 !important; }
+.tag-new     { background-color: rgba(44,198,83,0.15)  !important; color: #2DC653 !important; }
+.tag-hot     { background-color: rgba(230,57,70,0.15)  !important; color: #E63946 !important; }
 
 .item-dots {
 flex: 1;
 height: 1px;
 background: repeating-linear-gradient(
-to right, var(–dark4) 0, var(–dark4) 4px, transparent 4px, transparent 8px
+to right, #2E2E2E 0, #2E2E2E 4px, transparent 4px, transparent 8px
 );
 margin: 0 12px;
 max-width: 60px;
@@ -300,32 +234,30 @@ opacity: 0.5;
 }
 
 .item-price {
-font-family: ‘Impact’, ‘Arial Black’, sans-serif;
+font-family: Impact, ‘Arial Black’, sans-serif !important;
 font-size: 22px;
-color: var(–gold);
+color: #F5A623 !important;
 letter-spacing: 1px;
 white-space: nowrap;
 }
 .item-price .currency {
 font-size: 13px;
-font-family: ‘Cairo’, sans-serif;
+font-family: Arial, sans-serif !important;
 font-weight: 700;
-color: var(–text-muted);
+color: #888888 !important;
 margin-right: 3px;
 }
 
-/* ─── TWO-COLUMN GRID FOR HAJ/FRENCH ─── */
+/* ─── TWO-COL GRID ─── */
 .two-col-grid {
 display: grid;
 grid-template-columns: 1fr 1fr;
 gap: 6px;
 margin-bottom: 36px;
 }
-
 @media (max-width: 520px) {
 .two-col-grid { grid-template-columns: 1fr; }
 }
-
 .two-col-grid .menu-item { flex-direction: column; align-items: flex-start; gap: 8px; }
 .two-col-grid .item-name { font-size: 14px; }
 .two-col-grid .price-row {
@@ -336,23 +268,22 @@ width: 100%;
 }
 .two-col-grid .price-label {
 font-size: 10px;
-color: var(–text-muted);
-background: var(–dark4);
+color: #888888 !important;
+background-color: #2E2E2E !important;
 padding: 2px 8px;
 border-radius: 4px;
 }
 
-/* ─── DRINKS SECTION ─── */
+/* ─── DRINKS ─── */
 .drinks-row {
 display: grid;
 grid-template-columns: 1fr 1fr;
 gap: 12px;
 margin-bottom: 36px;
 }
-
 .drink-card {
-background: var(–dark2);
-border: 1px solid var(–dark4);
+background-color: #1A1A1A !important;
+border: 1px solid #2E2E2E;
 border-radius: 12px;
 padding: 18px;
 display: flex;
@@ -362,33 +293,41 @@ transition: all 0.2s ease;
 }
 .drink-card:hover {
 border-color: rgba(245,166,35,0.4);
-background: var(–dark3);
+background-color: #242424 !important;
 }
 .drink-icon { font-size: 28px; }
-.drink-name { font-size: 14px; font-weight: 700; }
+.drink-name {
+font-size: 14px;
+font-weight: 700;
+color: #F5F0E8 !important;
+}
 .drink-price {
-font-family: ‘Impact’, ‘Arial Black’, sans-serif;
+font-family: Impact, ‘Arial Black’, sans-serif !important;
 font-size: 20px;
-color: var(–gold);
+color: #F5A623 !important;
 margin-right: auto;
+}
+.drink-price .currency {
+font-size: 12px;
+font-family: Arial, sans-serif !important;
+color: #888888 !important;
 }
 
 /* ─── FOOTER ─── */
 .footer {
-background: var(–dark2);
-border: 1px solid var(–dark4);
+background-color: #1A1A1A !important;
+border: 1px solid #2E2E2E;
 border-radius: 16px;
 padding: 24px;
 text-align: center;
 }
-
 .footer-location {
 font-size: 14px;
-color: var(–text-muted);
+color: #888888 !important;
 margin-bottom: 16px;
 line-height: 1.8;
 }
-.footer-location strong { color: var(–off-white); }
+.footer-location strong { color: #F5F0E8 !important; }
 
 .phone-grid {
 display: flex;
@@ -400,33 +339,21 @@ flex-wrap: wrap;
 display: flex;
 align-items: center;
 gap: 8px;
-background: var(–dark3);
-border: 1px solid var(–dark4);
+background-color: #242424 !important;
+border: 1px solid #2E2E2E;
 border-radius: 30px;
 padding: 10px 20px;
 font-weight: 700;
 font-size: 15px;
 letter-spacing: 1px;
-transition: all 0.2s ease;
 text-decoration: none;
-color: var(–white);
+color: #FFFFFF !important;
+transition: all 0.2s ease;
 }
 .phone-chip:hover {
-background: var(–gold);
-color: var(–dark);
-border-color: var(–gold);
-}
-.phone-icon { font-size: 16px; }
-
-/* ─── SCROLL INDICATOR ─── */
-.scroll-fade {
-opacity: 0;
-transform: translateY(20px);
-transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.scroll-fade.visible {
-opacity: 1;
-transform: translateY(0);
+background-color: #F5A623 !important;
+color: #0F0F0F !important;
+border-color: #F5A623;
 }
 </style>
 
@@ -437,17 +364,19 @@ transform: translateY(0);
 
   <!-- HERO -->
 
-  <div class="hero scroll-fade">
-    <div class="logo-wrap"><img src="Logo10.jpg" alt="DR. SNACK Logo"></div>
-    <div class="brand-name">DR. SNACK</div>
-    <div class="brand-sub">قائمة الطعام الرسمية</div>
+  <div class="hero">
+    <div class="logo-wrap">
+      <img src="Logo10.jpg" alt="DR. SNACK Logo">
+    </div>
+    <span class="brand-name">DR. SNACK</span>
+    <span class="brand-sub">قائمة الطعام الرسمية</span>
   </div>
 
-  <div class="divider scroll-fade"><span class="divider-icon">✦</span></div>
+  <div class="divider"><span class="divider-icon">✦</span></div>
 
-  <!-- SPECIAL OFFER -->
+  <!-- OFFER -->
 
-  <div class="offer-banner scroll-fade">
+  <div class="offer-banner">
     <div class="offer-icon">🎁</div>
     <div class="offer-text">
       <h3>عرض خاص محدود!</h3>
@@ -458,16 +387,16 @@ transform: translateY(0);
 
   <!-- MEAL DEAL -->
 
-  <div class="meal-deal scroll-fade">
+  <div class="meal-deal">
     اعمل السندويش وجبة كاملة بـ <strong>دينار واحد فقط</strong> 🔥
   </div>
 
-  <!-- ─── SANDWICHES ─── -->
+  <!-- SANDWICHES -->
 
-  <div class="section-header scroll-fade">
+  <div class="section-header">
     <span class="sec-icon">🥙</span>
     <h2>السندويشات</h2>
-    <span class="item-count">20 صنف</span>
+    <span class="item-count">12 صنف</span>
   </div>
 
   <div class="menu-grid">
@@ -485,11 +414,11 @@ transform: translateY(0);
     <div class="menu-item"><span class="item-name">فاهيتا</span><span class="item-tag tag-popular">⭐ الأكثر طلباً</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.90</span></div>
   </div>
 
-  <div class="divider scroll-fade"><span class="divider-icon">✦</span></div>
+  <div class="divider"><span class="divider-icon">✦</span></div>
 
-  <!-- ─── SIDES & SALADS ─── -->
+  <!-- SIDES & SALADS -->
 
-  <div class="section-header scroll-fade">
+  <div class="section-header">
     <span class="sec-icon">🥗</span>
     <h2>المقبلات والسلطات</h2>
     <span class="item-count">8 أصناف</span>
@@ -506,11 +435,11 @@ transform: translateY(0);
     <div class="menu-item"><span class="item-name">سلطة شيف</span><span class="item-tag tag-new">✨ مميز</span><span class="item-dots"></span><span class="item-price"><span class="currency">د</span>1.75</span></div>
   </div>
 
-  <div class="divider scroll-fade"><span class="divider-icon">✦</span></div>
+  <div class="divider"><span class="divider-icon">✦</span></div>
 
-  <!-- ─── SAJ / FRENCH ─── -->
+  <!-- SAJ / FRENCH -->
 
-  <div class="section-header scroll-fade">
+  <div class="section-header">
     <span class="sec-icon">🫓</span>
     <h2>سندويش صاج / فرنسي / حمام</h2>
     <span class="item-count">7 أصناف</span>
@@ -564,61 +493,42 @@ transform: translateY(0);
     </div>
   </div>
 
-  <div class="divider scroll-fade"><span class="divider-icon">✦</span></div>
+  <div class="divider"><span class="divider-icon">✦</span></div>
 
-  <!-- ─── DRINKS ─── -->
+  <!-- DRINKS -->
 
-  <div class="section-header scroll-fade">
+  <div class="section-header">
     <span class="sec-icon">🥤</span>
     <h2>المشروبات</h2>
     <span class="item-count">2 أصناف</span>
   </div>
 
-  <div class="drinks-row scroll-fade">
+  <div class="drinks-row">
     <div class="drink-card">
       <span class="drink-icon">🥤</span>
-      <div>
-        <div class="drink-name">مشروبات غازية</div>
-      </div>
-      <div class="drink-price"><span style="font-size:13px;font-family:'Cairo';color:var(--text-muted)">د</span>0.35</div>
+      <div><div class="drink-name">مشروبات غازية</div></div>
+      <div class="drink-price"><span class="currency">د</span>0.35</div>
     </div>
     <div class="drink-card">
       <span class="drink-icon">💧</span>
-      <div>
-        <div class="drink-name">مياه معدنية</div>
-      </div>
-      <div class="drink-price"><span style="font-size:13px;font-family:'Cairo';color:var(--text-muted)">د</span>0.35</div>
+      <div><div class="drink-name">مياه معدنية</div></div>
+      <div class="drink-price"><span class="currency">د</span>0.35</div>
     </div>
   </div>
 
-  <!-- ─── FOOTER ─── -->
+  <!-- FOOTER -->
 
-  <div class="footer scroll-fade">
+  <div class="footer">
     <div class="footer-location">
       📍 <strong>الشميساني</strong> — مقابل المستشفى التخصصي<br>
       مجمع أبو عيد بلازا
     </div>
     <div class="phone-grid">
-      <a class="phone-chip" href="tel:0797220976"><span class="phone-icon">📞</span> 079 722 0 976</a>
-      <a class="phone-chip" href="tel:0797810633"><span class="phone-icon">📞</span> 079 781 0 633</a>
+      <a class="phone-chip" href="tel:0797220976">📞 079 722 0 976</a>
+      <a class="phone-chip" href="tel:0797810633">📞 079 781 0 633</a>
     </div>
   </div>
 
 </div>
-
-<script>
-  // Intersection Observer for scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
-</script>
-
 </body>
 </html>
